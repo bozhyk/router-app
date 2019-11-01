@@ -1,11 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 This app shows how to use Redux Saga, Redux Router, React Boostrap for displaying two simple pages with users data:
-list page
-<img src="docs/Screenshot_list_page.png"  width="500">
+## List page
 
-and details pages
-<img src="docs/Screenshot_details_page.png"  width="500">
+<img src="docs/Screenshot_list_page.png" width="800">
+
+## Details pages
+
+<img src="docs/Screenshot_details_page.png" width="800">
 
 ## Available Scripts
 
