@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
@@ -9,13 +9,14 @@ import {
   Button,
   ButtonToolbar
 } from 'react-bootstrap';
+import { loadUserData } from '../actions';
 
-const DetailPage = ({ userList = [] }) => {
+const DetailPage = ({ currentUser = {}, dispatch }) => {
   const { id } = useParams();
-  const item = userList.find(item => item.id.toString() === id) || {};
-  if (!item) {
-    return null;
-  }
+  useEffect(() => {
+    dispatch(loadUserData(id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   const handleUpdate = () => {};
 
@@ -36,12 +37,12 @@ const DetailPage = ({ userList = [] }) => {
             </Form.Group>
             <Form.Group controlId="formName">
               <Form.Label>Name</Form.Label>
-              <Form.Control value={item.name} onChange={() => handleUpdate()} />
+              <Form.Control value={currentUser.name} onChange={() => handleUpdate()} />
             </Form.Group>
             <Form.Group controlId="formEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control
-                value={item.email}
+                value={currentUser.email}
                 onChange={() => handleUpdate()}
               />
             </Form.Group>
@@ -65,7 +66,7 @@ const DetailPage = ({ userList = [] }) => {
 };
 
 const mapStateToProps = state => ({
-  userList: state.userList
+  currentUser: state.currentUser
 });
 
 export default connect(mapStateToProps)(DetailPage);

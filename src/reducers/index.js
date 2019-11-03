@@ -1,7 +1,8 @@
-import { RENDER_USER_LIST } from '../actions';
+import { RENDER_USER_LIST, RENDER_USER_FORM } from '../actions';
 
 const initialState = {
   userList: [],
+  currentUser: {},
   loading: false
 };
 
@@ -12,6 +13,11 @@ export default function usersApp(state = initialState, action) {
         ...state,
         userList: action.userList
       };
+      case RENDER_USER_FORM:
+        return {
+          ...state,
+          currentUser: action.currentUser
+        };
 
     default:
       return state;

@@ -6,7 +6,7 @@ import { Container, Col, Row } from 'react-bootstrap';
 const User = ({ id, name, email, phone, address }) => (
   <ListGroup.Item action href={`/users/${id}`}>
     <Container>
-        <Row className="row">
+        <Row>
           <Col>
             { name }
           </Col>
