@@ -1,10 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { Container, Col, Row } from 'react-bootstrap';
 
-const User = ({ id, name }) => (
+const User = ({ id, name, email, phone, address }) => (
   <ListGroup.Item action href={`/users/${id}`}>
-    {name}
+    <Container>
+        <Row className="row">
+          <Col>
+            { name }
+          </Col>
+          <Col>
+            { email }
+          </Col>
+          <Col>
+            { phone }
+          </Col>
+          <Col>
+            { address.city }
+          </Col>
+        </Row>
+      </Container>
   </ListGroup.Item>
 );
 
