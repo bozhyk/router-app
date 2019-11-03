@@ -8,7 +8,7 @@ const HomePage = () =>
     <Container>
       <Row className="row">
         <Col xs={12}>
-          <h1>User List</h1>
+          <h1>User List:</h1>
           <UserList />
         </Col>
       </Row>
