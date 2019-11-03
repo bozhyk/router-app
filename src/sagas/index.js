@@ -1,5 +1,10 @@
 import { all, call, put, takeEvery } from 'redux-saga/effects';
-import { LOAD_USER_LIST, LOAD_USER_DATA, RENDER_USER_LIST, RENDER_USER_FORM } from '../actions';
+import { LOAD_USER_LIST, LOAD_USER_DATA,
+  USER_LIST_FETCH_SUCCEEDED,
+  USER_LIST_FETCH_FAILED,
+  USER_DATA_FETCH_SUCCEEDED,
+  USER_DATA_FETCH_FAILED,
+} from '../actions';
 
 const apiHost = 'https://jsonplaceholder.typicode.com';
 
@@ -10,14 +15,22 @@ function* fetchEndpoint(endpoint) {
 }
 
 export function* fetchUserList() {
-  const data = yield fetchEndpoint(`${apiHost}/users`);
-  yield put({ type: RENDER_USER_LIST, userList: data });
+  try {
+    const data = yield fetchEndpoint(`${apiHost}/users`);
+    yield put({ type: USER_LIST_FETCH_SUCCEEDED, userList: data });
+  } catch (e) {
+    yield put({ type: USER_LIST_FETCH_FAILED, message: e.message });
+  }
 }
 
 export function* fetchUserById(action) {
-  const { payload: id } = action;
-  const data = yield fetchEndpoint(`${apiHost}/users/${id}`);
-  yield put({ type: RENDER_USER_FORM, currentUser: data });
+  try {
+    const { payload: id } = action;
+    const data = yield fetchEndpoint(`${apiHost}/users/${id}`);
+    yield put({ type: USER_DATA_FETCH_SUCCEEDED, currentUser: data });
+  } catch (e) {
+    yield put({ type: USER_DATA_FETCH_FAILED, message: e.message });
+  }
 }
 
 export function* loadUserList() {

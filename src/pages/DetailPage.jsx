@@ -20,6 +20,8 @@ const DetailPage = ({ currentUser = {}, dispatch }) => {
 
   const handleUpdate = () => {};
 
+  const { name = '', email = '', address: { city = '' } = {} } = currentUser;
+
   return (
     <Container>
       <Row className="row">
@@ -32,19 +34,23 @@ const DetailPage = ({ currentUser = {}, dispatch }) => {
             }}
           >
             <Form.Group controlId="formId">
-              <Form.Label>ID</Form.Label>
-              <Form.Control value={id} readOnly />
+              <Form.Label>ID:</Form.Label>
+              <Form.Control value={ id } readOnly />
             </Form.Group>
             <Form.Group controlId="formName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control value={currentUser.name} onChange={() => handleUpdate()} />
+              <Form.Label>Name:</Form.Label>
+              <Form.Control value={ name } onChange={() => handleUpdate()} />
             </Form.Group>
             <Form.Group controlId="formEmail">
-              <Form.Label>Email</Form.Label>
+              <Form.Label>Email:</Form.Label>
               <Form.Control
-                value={currentUser.email}
+                value={ email }
                 onChange={() => handleUpdate()}
               />
+            </Form.Group>
+            <Form.Group controlId="formCity">
+              <Form.Label>City:</Form.Label>
+              <Form.Control value={ city } onChange={() => handleUpdate()} />
             </Form.Group>
 
             <ButtonToolbar>
